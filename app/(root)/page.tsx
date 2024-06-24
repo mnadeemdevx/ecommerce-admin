@@ -1,7 +1,11 @@
-export default function Home() {
+import { UserButton } from "@clerk/nextjs";
+
+const SetupPage = () => {
     return (
-        <p className="h-full flex items-center justify-center">
-            Hello admin dashboard
-        </p>
+        <div>
+            <UserButton afterSignOutUrl="/" />
+        </div>
     );
-}
+};
+
+export default SetupPage;
