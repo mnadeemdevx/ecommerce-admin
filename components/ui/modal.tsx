@@ -5,6 +5,7 @@ import {
     DialogContent,
     DialogDescription,
     DialogHeader,
+    DialogOverlay,
     DialogTitle,
 } from "@/components/ui/dialog";
 
@@ -37,6 +38,7 @@ export const Modal = ({
                 </DialogHeader>
                 <div>{children}</div>
             </DialogContent>
+            <DialogOverlay className="bg-white" />
         </Dialog>
     );
 };
