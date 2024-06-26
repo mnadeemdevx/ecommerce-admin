@@ -38,7 +38,7 @@ export const Modal = ({
                 </DialogHeader>
                 <div>{children}</div>
             </DialogContent>
-            <DialogOverlay className="bg-white" />
+            <DialogOverlay className="bg-white fixed inset-0 bg-opacity-50 backdrop-blur" />
         </Dialog>
     );
 };

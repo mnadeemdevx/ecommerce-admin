@@ -1,7 +1,7 @@
 "use client";
 
-import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,11 @@ export function MainNav({
     const params = useParams();
 
     const routes = [
+        {
+            href: `/${params.storeId}`,
+            label: "Overview",
+            active: pathname === `/${params.storeId}`,
+        },
         {
             href: `/${params.storeId}/settings`,
             label: "Settings",
