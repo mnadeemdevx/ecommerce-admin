@@ -12,6 +12,11 @@ export function MainNav({
     const pathname = usePathname();
     const params = useParams();
 
+    const checkPath = (name: string) => {
+        const isAvailable = pathname.split("/").includes(name);
+        return isAvailable;
+    };
+
     const routes = [
         {
             href: `/${params.storeId}`,
@@ -19,9 +24,14 @@ export function MainNav({
             active: pathname === `/${params.storeId}`,
         },
         {
+            href: `/${params.storeId}/billboards`,
+            label: "Billboards",
+            active: checkPath("billboards"),
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
-            active: pathname === `/${params.storeId}/settings`,
+            active: checkPath("settings"),
         },
     ];
     return (

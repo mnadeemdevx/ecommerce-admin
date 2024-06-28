@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import axios from "axios";
 import * as z from "zod";
@@ -26,9 +26,7 @@ import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 
-interface SettingsFormProps {
-    initialData: Store;
-}
+import { useOrigin } from "@/hooks/use-origin";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -38,8 +36,14 @@ const formSchema = z.object({
 
 type SettingsFormValues = z.infer<typeof formSchema>;
 
+interface SettingsFormProps {
+    initialData: Store;
+}
+
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     const router = useRouter();
+    const params = useParams();
+    const origin = useOrigin();
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -51,7 +55,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     const onSubmit = async (values: SettingsFormValues) => {
         try {
             setIsLoading(true);
-            await axios.patch(`/api/stores/${initialData.id}`, values);
+            await axios.patch(`/api/stores/${params.storeId}`, values);
             router.refresh();
             toast.success("Store updated");
         } catch (err) {
@@ -64,7 +68,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     const onDelete = async () => {
         try {
             setIsLoading(true);
-            await axios.delete(`/api/stores/${initialData.id}`);
+            await axios.delete(`/api/stores/${params.storeId}`);
             toast.success("Store deleted");
             router.push("/");
             router.refresh();
@@ -130,7 +134,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
             <Separator />
             <ApiAlert
                 title="NEXT_PUBLIC_API_URL"
-                description={`${origin}/api/${initialData.id}`}
+                description={`${origin}/api/${params.storeId}`}
                 variant="public"
             />
             <AlertModal

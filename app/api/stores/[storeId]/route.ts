@@ -12,7 +12,7 @@ export async function PATCH(
         const { userId } = auth();
 
         if (!userId) {
-            return new NextResponse("Unauthorized", {
+            return new NextResponse("Unauthenticated", {
                 status: 401,
             });
         }
@@ -59,7 +59,7 @@ export async function DELETE(
         const { userId } = auth();
 
         if (!userId) {
-            return new NextResponse("Unauthorized", {
+            return new NextResponse("Unauthenticated", {
                 status: 401,
             });
         }
