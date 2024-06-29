@@ -73,9 +73,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             } else {
                 await axios.post(`/api/${params.storeId}/billboards`, values);
             }
-            router.refresh();
-            // router.push(`/${params.storeId}/billboards`);
             toast.success(toastMessage);
+            router.push(`/${params.storeId}/billboards`);
+            router.refresh();
         } catch (err) {
             toast.error("Something went wrong");
         } finally {
@@ -90,7 +90,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 `/api/${params.storeId}/billboards/${params.billboardId}`,
             );
             toast.success("Billboard deleted");
-            router.push("/");
+            router.push(`/${params.storeId}/billboards`);
             router.refresh();
         } catch (err) {
             toast.error(
@@ -169,7 +169,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     </Button>
                 </form>
             </Form>
-            <Separator />
             <AlertModal
                 isOpen={open}
                 onClose={() => setOpen(false)}
