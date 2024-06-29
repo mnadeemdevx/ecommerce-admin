@@ -2,7 +2,11 @@ import { BillboardForm } from "./_components/billboard-form";
 
 import db from "@/lib/db";
 
-const BillboardId = async ({ params }: { params: { billboardId: string } }) => {
+const BillboardPage = async ({
+    params,
+}: {
+    params: { billboardId: string };
+}) => {
     const billboard = await db.billboard.findUnique({
         where: {
             id: params.billboardId,
@@ -18,4 +22,4 @@ const BillboardId = async ({ params }: { params: { billboardId: string } }) => {
     );
 };
 
-export default BillboardId;
+export default BillboardPage;

@@ -29,6 +29,11 @@ export function MainNav({
             active: checkPath("billboards"),
         },
         {
+            href: `/${params.storeId}/categories`,
+            label: "Categories",
+            active: checkPath("categories"),
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: checkPath("settings"),
