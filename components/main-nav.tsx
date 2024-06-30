@@ -39,6 +39,11 @@ export function MainNav({
             active: checkPath("sizes"),
         },
         {
+            href: `/${params.storeId}/colors`,
+            label: "Colors",
+            active: checkPath("colors"),
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: checkPath("settings"),
