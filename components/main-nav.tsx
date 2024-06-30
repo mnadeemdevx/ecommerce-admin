@@ -34,6 +34,11 @@ export function MainNav({
             active: checkPath("categories"),
         },
         {
+            href: `/${params.storeId}/sizes`,
+            label: "Sizes",
+            active: checkPath("sizes"),
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: checkPath("settings"),
