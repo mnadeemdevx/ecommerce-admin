@@ -9,7 +9,7 @@ import { ImagePlus, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ImageUplaodProps {
-    disabled: boolean;
+    disabled?: boolean;
     onChange: (value: string) => void;
     onRemove: (value: string) => void;
     value: string[];
@@ -34,6 +34,7 @@ export const ImageUplaod: React.FC<ImageUplaodProps> = ({
     if (!isMounted) {
         return null;
     }
+
     return (
         <div>
             <div className="mb-4 flex items-center gap-4">
@@ -45,8 +46,11 @@ export const ImageUplaod: React.FC<ImageUplaodProps> = ({
                         <div className="z-10 absolute top-2 right-2">
                             <Button
                                 type="button"
-                                onClick={() => onRemove(url)}
+                                onClick={() => {
+                                    onRemove(url);
+                                }}
                                 variant="destructive"
+                                size="icon"
                             >
                                 <Trash className="h-4 w-4" />
                             </Button>
@@ -59,17 +63,21 @@ export const ImageUplaod: React.FC<ImageUplaodProps> = ({
                         />
                     </div>
                 ))}
-                <CldUploadWidget onSuccess={onUpload} uploadPreset="zesyrg9h">
+                <CldUploadWidget
+                    onSuccess={onUpload}
+                    uploadPreset="zesyrg9h"
+                    options={{ multiple: true }}
+                >
                     {({ open }) => {
                         const onClick = () => {
                             open();
                         };
                         return (
                             <Button
+                                type="button"
                                 disabled={disabled}
                                 variant="secondary"
                                 onClick={onClick}
-                                type="button"
                             >
                                 <ImagePlus className="h-4 w-4 mr-2" />
                                 Upload an Image

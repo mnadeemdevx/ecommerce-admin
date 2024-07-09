@@ -12,7 +12,7 @@ export function MainNav({
     const pathname = usePathname();
     const params = useParams();
 
-    const checkPath = (name: string) => {
+    const checkPath = (name: string): Boolean => {
         const isAvailable = pathname.split("/").includes(name);
         return isAvailable;
     };
@@ -42,6 +42,11 @@ export function MainNav({
             href: `/${params.storeId}/colors`,
             label: "Colors",
             active: checkPath("colors"),
+        },
+        {
+            href: `/${params.storeId}/products`,
+            label: "Products",
+            active: checkPath("products"),
         },
         {
             href: `/${params.storeId}/settings`,
