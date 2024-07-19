@@ -49,6 +49,11 @@ export function MainNav({
             active: checkPath("products"),
         },
         {
+            href: `/${params.storeId}/orders`,
+            label: "Orders",
+            active: checkPath("orders"),
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: checkPath("settings"),

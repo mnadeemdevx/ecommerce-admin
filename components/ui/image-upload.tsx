@@ -35,34 +35,37 @@ export const ImageUplaod: React.FC<ImageUplaodProps> = ({
         return null;
     }
 
+    console.log("check values ------------>", value);
+
     return (
         <div>
             <div className="mb-4 flex items-center gap-4">
-                {value.map((url) => (
-                    <div
-                        key={url}
-                        className="relative w-[200px] h-[200px] rounded-md overflow-hidden"
-                    >
-                        <div className="z-10 absolute top-2 right-2">
-                            <Button
-                                type="button"
-                                onClick={() => {
-                                    onRemove(url);
-                                }}
-                                variant="destructive"
-                                size="icon"
-                            >
-                                <Trash className="h-4 w-4" />
-                            </Button>
+                {value?.length > 0 &&
+                    value?.map((url) => (
+                        <div
+                            key={url}
+                            className="relative w-[200px] h-[200px] rounded-md overflow-hidden"
+                        >
+                            <div className="z-10 absolute top-2 right-2">
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        onRemove(url);
+                                    }}
+                                    variant="destructive"
+                                    size="icon"
+                                >
+                                    <Trash className="h-4 w-4" />
+                                </Button>
+                            </div>
+                            <Image
+                                fill
+                                className="object-cover"
+                                alt="Image"
+                                src={url}
+                            />
                         </div>
-                        <Image
-                            fill
-                            className="object-cover"
-                            alt="Image"
-                            src={url}
-                        />
-                    </div>
-                ))}
+                    ))}
                 <CldUploadWidget
                     onSuccess={onUpload}
                     uploadPreset="zesyrg9h"

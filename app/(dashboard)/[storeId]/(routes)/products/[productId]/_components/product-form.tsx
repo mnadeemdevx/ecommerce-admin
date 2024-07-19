@@ -69,7 +69,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     const params = useParams();
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [images, setImages] = useState<string[]>([]);
 
     const title = initialData ? "Edit product" : "Create product";
     const description = initialData ? "Edit a product" : "Add a new product";
@@ -163,16 +162,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     <FormLabel>Images</FormLabel>
                                     <FormControl>
                                         <ImageUplaod
-                                            value={field.value.map(
-                                                (image) => image.url,
-                                            )}
+                                            value={
+                                                field.value
+                                                    ? [
+                                                          ...field.value.map(
+                                                              (image) =>
+                                                                  image.url,
+                                                          ),
+                                                      ]
+                                                    : []
+                                            }
                                             disabled={isLoading}
-                                            onChange={(url) =>
-                                                field.onChange([
+                                            onChange={(url) => {
+                                                return field.onChange([
                                                     ...field.value,
                                                     { url },
-                                                ])
-                                            }
+                                                ]);
+                                            }}
                                             onRemove={(url) =>
                                                 field.onChange([
                                                     ...field.value.filter(
