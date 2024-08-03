@@ -66,6 +66,7 @@ export async function POST(req: Request) {
             },
             data: {
                 isArchived: true,
+                isFeatured: false,
             },
         });
     }
